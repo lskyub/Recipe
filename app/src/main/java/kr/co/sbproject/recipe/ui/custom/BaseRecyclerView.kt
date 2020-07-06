@@ -57,6 +57,10 @@ abstract class BaseRecyclerView {
                 bindingVariableId?.let {
                     binding.setVariable(it, item)
                 }
+
+                itemView.setOnClickListener {
+                    Log.i("sgim","setOnClickListener")
+                }
             } catch (e: Exception) {
                 e.printStackTrace()
             }
@@ -113,6 +117,7 @@ class BaseDecoration : RecyclerView.ItemDecoration {
 
 @BindingAdapter("replaceAll")
 fun RecyclerView.replaceAll(list: List<Any>?) {
+    Log.i("sgim","replaceAll ${list?.size}")
     (this.adapter as? BaseRecyclerView.Adapter<Any, *>)?.run {
         replaceAll(list)
         notifyDataSetChanged()

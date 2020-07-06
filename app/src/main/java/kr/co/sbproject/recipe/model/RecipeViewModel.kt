@@ -1,15 +1,24 @@
 package kr.co.sbproject.recipe.model
 
+import android.graphics.drawable.Drawable
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import kr.co.sbproject.recipe.constants.ListLiveData
 
-class RecipeViewModel : ViewModel() {
-    val foodLiveData = MutableLiveData<List<Food>>()
+class RecipeViewModel : TopViewModel() {
+    private val foodMLiveData = ListLiveData<Food>()
+    val foodLiveData: LiveData<List<Food>>
+        get() = foodMLiveData as LiveData<List<Food>>
 
-    val categoryLiveData = MutableLiveData<List<Category>>()
+    private val categoryMLiveData = MutableLiveData<List<Category>>()
+    val categoryLiveData: LiveData<List<Category>>
+        get() = categoryMLiveData
 
-    init {
-        foodLiveData.postValue(getFoodList())
-        categoryLiveData.postValue(getCategoryList())
+    fun setFoodData(image: Drawable, title: String) {
+        foodMLiveData.add(Food(image, title))
+    }
+
+    fun setCategoryData(categorys: List<Category>) {
+        categoryMLiveData.postValue(categorys)
     }
 }
