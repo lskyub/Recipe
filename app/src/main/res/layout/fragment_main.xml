@@ -17,13 +17,13 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
-        <com.google.android.material.bottomnavigation.BottomNavigationView
+        <kr.co.sbproject.recipe.ui.custom.BottomView
             android:id="@+id/bnv_pager"
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:background="@drawable/bottom_navigation_background"
-            app:itemIconSize="18dp"
             app:elevation="30dp"
+            app:itemIconSize="18dp"
             app:itemIconTint="@color/bottom_navigation_item_background"
             app:labelVisibilityMode="unlabeled"
             app:menu="@menu/bottom_menu" />
