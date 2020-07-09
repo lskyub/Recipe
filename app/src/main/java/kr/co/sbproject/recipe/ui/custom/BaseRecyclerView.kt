@@ -33,7 +33,8 @@ abstract class BaseRecyclerView {
                 layoutResId = layoutResId,
                 parent = parent,
                 bindingVariableId = bindingVariableId
-            ) {}
+            ) {
+            }
 
         override fun getItemCount() = items.size
 

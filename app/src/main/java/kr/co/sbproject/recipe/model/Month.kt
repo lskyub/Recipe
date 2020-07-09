@@ -1,3 +1,3 @@
 package kr.co.sbproject.recipe.model
 
-data class Calendar(var title: String)
+data class Month(var title: String)
