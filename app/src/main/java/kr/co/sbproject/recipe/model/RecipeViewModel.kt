@@ -2,7 +2,6 @@ package kr.co.sbproject.recipe.model
 
 import android.graphics.drawable.Drawable
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import kr.co.sbproject.recipe.constants.ListLiveData
 
 class RecipeViewModel : TopViewModel() {
@@ -10,15 +9,15 @@ class RecipeViewModel : TopViewModel() {
     val foodLiveData: LiveData<List<Food>>
         get() = foodMLiveData as LiveData<List<Food>>
 
-    private val categoryMLiveData = MutableLiveData<List<Category>>()
+    private val categoryMLiveData = ListLiveData<Category>()
     val categoryLiveData: LiveData<List<Category>>
-        get() = categoryMLiveData
+        get() = categoryMLiveData as LiveData<List<Category>>
 
     fun setFoodData(image: Drawable, title: String) {
         foodMLiveData.add(Food(image, title))
     }
 
-    fun setCategoryData(categorys: List<Category>) {
-        categoryMLiveData.postValue(categorys)
+    fun setCategoryData(title: String) {
+        categoryMLiveData.add(Category(title))
     }
 }

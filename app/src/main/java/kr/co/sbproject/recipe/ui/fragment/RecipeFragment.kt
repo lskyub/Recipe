@@ -3,13 +3,12 @@ package kr.co.sbproject.recipe.ui.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.databinding.library.baseAdapters.BR
-import androidx.lifecycle.*
+import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.fragment_recipe.*
 import kr.co.sbproject.recipe.R
 import kr.co.sbproject.recipe.databinding.FragmentRecipeBinding
 import kr.co.sbproject.recipe.databinding.ItemCategoryBinding
 import kr.co.sbproject.recipe.databinding.ItemFoodBinding
-import kr.co.sbproject.recipe.model.TopModel
 import kr.co.sbproject.recipe.model.Category
 import kr.co.sbproject.recipe.model.Food
 import kr.co.sbproject.recipe.model.RecipeViewModel
@@ -30,27 +29,18 @@ class RecipeFragment : BaseBindingFragment<FragmentRecipeBinding>() {
         viewModel.setTitle("Category")
         viewModel.setSubTitle("Popular")
 
-        viewModel.setFoodData(
-            resources.getDrawable(R.drawable.food, null), "1"
-//            listOf(
-//                Food(resources.getDrawable(R.drawable.food, null), "1"),
-//                Food(resources.getDrawable(R.drawable.food2, null), "2"),
-//                Food(resources.getDrawable(R.drawable.food3, null), "3")
-//            )
-        )
+        viewModel.setFoodData(resources.getDrawable(R.drawable.food, null), "1")
+        viewModel.setFoodData(resources.getDrawable(R.drawable.food2, null), "2")
+        viewModel.setFoodData(resources.getDrawable(R.drawable.food3, null), "3")
 
-        viewModel.setCategoryData(
-            listOf(
-                Category("Seafood"),
-                Category("Mexican"),
-                Category("Italian"),
-                Category("Chinese"),
-                Category("Korea"),
-                Category("Salad"),
-                Category("Steak"),
-                Category("Snacks")
-            )
-        )
+        viewModel.setCategoryData("Seafood")
+        viewModel.setCategoryData("Mexican")
+        viewModel.setCategoryData("Italian")
+        viewModel.setCategoryData("Chinese")
+        viewModel.setCategoryData("Korea")
+        viewModel.setCategoryData("Salad")
+        viewModel.setCategoryData("Steak")
+        viewModel.setCategoryData("Snacks")
 
         binding.setVariable(BR.recipe, viewModel)
 
