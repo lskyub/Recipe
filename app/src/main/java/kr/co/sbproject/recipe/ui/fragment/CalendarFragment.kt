@@ -2,8 +2,16 @@ package kr.co.sbproject.recipe.ui.fragment
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.adapter.FragmentViewHolder
+import androidx.viewpager2.widget.ViewPager2
 import kotlinx.android.synthetic.main.fragment_calendar.*
+import kotlinx.android.synthetic.main.fragment_main.*
 import kr.co.sbproject.recipe.BR
 import kr.co.sbproject.recipe.R
 import kr.co.sbproject.recipe.databinding.FragmentCalendarBinding
@@ -11,6 +19,7 @@ import kr.co.sbproject.recipe.databinding.ItemCalendarDetailsBinding
 import kr.co.sbproject.recipe.model.CalendarDetails
 import kr.co.sbproject.recipe.model.CalendarViewModel
 import kr.co.sbproject.recipe.ui.custom.BaseRecyclerView
+
 
 class CalendarFragment : BaseBindingFragment<FragmentCalendarBinding>() {
 
@@ -44,6 +53,21 @@ class CalendarFragment : BaseBindingFragment<FragmentCalendarBinding>() {
                 }
             adapter = detailsAdapter
         }
+
+        activity?.let {
+            vp_calendar.apply {
+                adapter = CalendarViewPagerAdapter(it.supportFragmentManager, lifecycle)
+                registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                    override fun onPageSelected(position: Int) {
+//                        bnv_pager.menu.getItem(position).isChecked = true
+                    }
+                })
+                (getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+                isUserInputEnabled = false
+            }
+        }
+
+
     }
 
     override fun onUiStart() {
@@ -56,5 +80,18 @@ class CalendarFragment : BaseBindingFragment<FragmentCalendarBinding>() {
     }
 
     override fun onUiStop() {
+    }
+
+    /** viewpager adapter **/
+    inner class CalendarViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
+        FragmentStateAdapter(fragmentManager, lifecycle) {
+
+        private val monthView: MonthFragment by lazy {
+            MonthFragment()
+        }
+
+        override fun createFragment(position: Int): Fragment = monthView
+
+        override fun getItemCount() = 4
     }
 }

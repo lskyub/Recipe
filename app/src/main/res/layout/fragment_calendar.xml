@@ -32,9 +32,14 @@
                 app:topViewModel="@{calendar}" />
 
             <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_calendar"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:paddingStart="25dp"
+                android:paddingTop="25dp"
+                android:paddingEnd="25dp"
+                android:paddingBottom="10dp" />
         </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView

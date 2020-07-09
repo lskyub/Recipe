@@ -56,7 +56,7 @@ class MainFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        activity?.also {
+        activity?.let {
             dl.setScrimColor(Color.TRANSPARENT)
             val actionBarDrawerToggle: ActionBarDrawerToggle =
                 object : ActionBarDrawerToggle(it, dl, R.string.app_name, R.string.app_name) {
