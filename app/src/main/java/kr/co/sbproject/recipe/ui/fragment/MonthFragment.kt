@@ -1,11 +1,8 @@
 package kr.co.sbproject.recipe.ui.fragment
 
-import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import android.widget.GridLayout
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import kotlinx.android.synthetic.main.view_month.*
 import kr.co.sbproject.recipe.BR
 import kr.co.sbproject.recipe.R

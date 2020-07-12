@@ -54,20 +54,15 @@ class CalendarFragment : BaseBindingFragment<FragmentCalendarBinding>() {
             adapter = detailsAdapter
         }
 
-        activity?.let {
-            vp_calendar.apply {
-                adapter = CalendarViewPagerAdapter(it.supportFragmentManager, lifecycle)
-                registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-                    override fun onPageSelected(position: Int) {
+        vp_calendar.apply {
+            adapter = CalendarViewPagerAdapter(childFragmentManager, lifecycle)
+            registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+                override fun onPageSelected(position: Int) {
 //                        bnv_pager.menu.getItem(position).isChecked = true
-                    }
-                })
-                (getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
-                isUserInputEnabled = false
-            }
+                }
+            })
+            (getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
         }
-
-
     }
 
     override fun onUiStart() {
@@ -86,11 +81,7 @@ class CalendarFragment : BaseBindingFragment<FragmentCalendarBinding>() {
     inner class CalendarViewPagerAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
         FragmentStateAdapter(fragmentManager, lifecycle) {
 
-        private val monthView: MonthFragment by lazy {
-            MonthFragment()
-        }
-
-        override fun createFragment(position: Int): Fragment = monthView
+        override fun createFragment(position: Int): Fragment = MonthFragment()
 
         override fun getItemCount() = 4
     }
